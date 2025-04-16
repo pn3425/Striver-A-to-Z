@@ -22,6 +22,9 @@ void explainStack(){
     cout<<"Size of stack : "<<st.size()<<endl; // Get the size of the stack (3)
     cout<<st.empty()<<endl; // Check if the stack is empty (0 means not empty)  
 
+     stack<int>st1, st2;
+     st1.swap(st2); // Swap the contents of two stacks (st1 and st2)
+     
      
      //rest are same function
 }
