@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//It os doubly linked list
 void explainDeque() {
     deque<int> d;
     d.push_back(1); //  {1} Add an element to the end of the deque
