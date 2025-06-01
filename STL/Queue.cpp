@@ -17,7 +17,7 @@ void ExplainQueue(){
   cout<<q.front()<<endl; //1
   q.pop(); //{2,9}
 
-  cout<<q.front()<<endl; //p
+  cout<<q.front()<<endl; //2
 
 }
   int main(){
