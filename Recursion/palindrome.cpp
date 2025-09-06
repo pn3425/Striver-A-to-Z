@@ -41,12 +41,11 @@ CheckPalindrome(0, 5, "MADAM")
 FOR MADASM :
 
 CheckPalindrome(0, 6, "MADASM")
+|
+|-- s[0] == s[5] ('M' == 'M') → true, continue
     |
-    --> s[0] == s[5] ('M' == 'M') --> CheckPalindrome(1, 6, "MADASM")
-            |
-            --> s[1] == s[4] ('A' == 'A') --> CheckPalindrome(2, 6, "MADASM")
-                    |
-                    --> s[2] != s[3] ('D' != 'S') --> Return false
-
+    |-- CheckPalindrome(1, 6, "MADASM")
+        |
+        |-- s[1] == s[4] ('A' == 'S') → false, return false
 
 */
