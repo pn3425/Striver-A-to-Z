@@ -183,6 +183,43 @@ Node* InsertAtTail(Node* head, int val){
     return head;
 }
 
+//Insert at Kth Position
+
+Node* InsertAtK(Node* head, int val, int k){
+
+    // Case 1 :  // If no element there, just add the new element (val)
+    if(head == NULL){
+        if(k == 1){
+        return new Node(val); 
+        }
+        else{
+            return head;
+        }
+    }
+
+    // Case 2 : If k=1 (Adding at first)
+    if(k == 1){
+        Node* temp = new Node(val,head);
+        return temp; 
+    }
+
+    // Case 3 : If k>=2 
+    int count = 0;
+    Node* tempx = head;
+    
+    while(tempx != NULL){
+        count++;
+        if(count == k - 1){
+            Node* x = new Node(val);
+            x -> next = tempx -> next;
+            tempx -> next = x;
+            break;
+        }
+        tempx = tempx -> next;
+    }
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {22,3,4,5};
@@ -227,8 +264,13 @@ int main()
     // PrintLL(head);
 
     //Insert at Tail
-    head = InsertAtTail(head,100);
-    cout<<"Inserting Element at tail: ";
+    // head = InsertAtTail(head,100);
+    // cout<<"Inserting Element at tail: ";
+    // PrintLL(head);
+
+    //Insert at kth Posi
+    head = InsertAtK(head,9090,3);
+    cout<<"Inserting at Kth Posi: ";
     PrintLL(head);
 
 }
