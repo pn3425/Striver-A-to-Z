@@ -38,7 +38,7 @@ Node* ConvertArray2LL(vector<int>array){
 //For ll Traversal  (Print the complete converted array to LL)
 Node* PrintLL(Node* head){
     Node* temp = head; 
-    cout<<"LL Printing : ";
+    //cout<<"LL Printing : ";
     while(temp != NULL){
         cout<<temp->data<<" ";
         temp = temp->next;
@@ -77,6 +77,26 @@ Node* DeleteHead (Node* head){
     return head; // Returning new head
 }
 
+
+// Deletion of Tail (Ensure that last element is removed and 2nd last points to NULLPTR)
+
+Node* DeleteTail(Node* head){
+    if(head == NULL || head->next == NULL) return NULL;
+    Node* temp = head;
+
+     // Atleast 4 elements there in total
+    while(temp->next->next != NULL){
+        temp = temp -> next;
+    }
+    //Free the last element
+    delete temp->next;
+
+    // We reached 2nd last element
+    temp -> next = nullptr; // Assign the 2nd last element next as nullptr
+
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {22,3,4,5};
@@ -95,8 +115,15 @@ int main()
     //For SearchElement
     cout<<"SearchElement Present or not: "<<SearchElement(head,5)<<"\n";
 
-    //For Deletion/Removal of Head
-    head = DeleteHead(head);
-    cout<<"New head";
+    //For Deletion/Removal of Head (Uncomment the below three lines)
+
+    // head = DeleteHead(head);
+    // cout<<"New head";
+    // PrintLL(head);
+
+    //For Deletion of Tail
+    
+    head = DeleteTail(head);
+    cout<<"Tail Deleted: ";
     PrintLL(head);
 }
