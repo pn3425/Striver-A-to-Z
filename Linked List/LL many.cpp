@@ -35,6 +35,17 @@ Node* ConvertArray2LL(vector<int>array){
     
 }
 
+//For ll Traversal  (Print the complete converted array to LL)
+Node* PrintLL(Node* head){
+    Node* temp = head; 
+    cout<<"LL Printing : ";
+    while(temp != NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    return head;
+}
+    
 // Length of LL
 int Length(Node* head){ 
     Node* temp = head; 
@@ -57,26 +68,35 @@ int SearchElement(Node* head, int val){
     return 0;
 }
 
+// Deletion of head
+Node* DeleteHead (Node* head){
+    if(head == NULL) return head;
+    Node* temp = head;
+    head = head -> next;
+    delete temp;
+    return head; // Returning new head
+}
+
 int main()
 {
     vector<int> arr = {22,3,4,5};
     Node* head = ConvertArray2LL(arr);
-    cout<<"Printing Head Data: "<<head->data<<"\n"; // Output for checking ConvertArray2LL
+
+    // Output for checking ConvertArray2LL
+    cout<<"Printing Head Data: "<<head->data<<"\n"; 
     
-    //For ll Traversal  (Print the complete converted array to LL)
-    Node* temp = head; 
-    cout<<"LL Printing : ";
-    while(temp){
-        cout<<temp->data<<" ";
-        temp = temp->next;
-    }
-    
+    PrintLL(head);
+
     cout<<"\n";
     
     //For Length
     cout<<"Length of LL: "<<Length(head)<<"\n";
     
     //For SearchElement
-    cout<<" SearchElement Present or not: "<<SearchElement(head,5);
+    cout<<"SearchElement Present or not: "<<SearchElement(head,5)<<"\n";
 
+    //For Deletion/Removal of Head
+    head = DeleteHead(head);
+    cout<<"New head";
+    PrintLL(head);
 }
