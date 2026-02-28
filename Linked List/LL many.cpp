@@ -129,6 +129,45 @@ Node* DeleteAtK(Node* head, int k){
     return head;
 }
 
+//Delete the element (Given element)
+
+Node* DeleteAtElement(Node* head, int element){
+
+    if(head == NULL) return head;
+
+    // If K=1 (Deleting the head)
+    if(head -> data == element){
+        Node* temp = head;
+        head = head ->next;
+        delete temp;
+        return head;
+    }
+    int count = 0;
+    Node* temp = head;
+    Node* prev = NULL;
+
+    //If k=Any number including tail (But less than the size of LL)
+
+    while(temp != NULL){
+        if(temp -> data == element){
+            prev -> next = prev -> next -> next; // Create Link
+            delete temp;
+            break;
+        }
+        prev = temp;    //Remember
+        temp = temp -> next; // Then move further
+    }
+    return head;
+}
+
+//Insertion at Beginning
+
+Node* InsertHead(Node* head, int val){
+    Node* temp = new Node(val);
+    temp -> next = head;    // OR  Node* temp = new Node(val,head);
+    return temp;
+}
+
 int main()
 {
     vector<int> arr = {22,3,4,5};
@@ -159,7 +198,20 @@ int main()
     // cout<<"Tail Deleted: ";
     // PrintLL(head);
     
-    head = DeleteAtK(head,3);
-    cout<<"Element deleted at particular kth posi: ";
+    //Deletion at Kth position
+
+    // head = DeleteAtK(head,3);
+    // cout<<"Element deleted at particular kth posi: ";
+    // PrintLL(head);
+
+    //Deletion of element (When element itself is passed)
+
+    // head = DeleteAtElement(head,5);
+    // cout<<"Remaining Elements after deletion : ";
+    // PrintLL(head);
+
+    //Insert at Beginning
+    head = InsertHead(head,100);
+    cout<<"Inserting Element at Beginning: ";
     PrintLL(head);
 }
