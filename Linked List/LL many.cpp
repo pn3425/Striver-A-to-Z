@@ -97,6 +97,38 @@ Node* DeleteTail(Node* head){
     return head;
 }
 
+//Delete at any kth element
+
+Node* DeleteAtK(Node* head, int k){
+
+    if(head == NULL) return head;
+
+    // If K=1 (Deleting the head)
+    if(k == 1){
+        Node* temp = head;
+        head = head ->next;
+        delete temp;
+        return head;
+    }
+    int count = 0;
+    Node* temp = head;
+    Node* prev = NULL;
+
+    //If k=Any number including tail (But less than the size of LL)
+
+    while(temp != NULL){
+        count++;
+        if(count == k){
+            prev -> next = prev -> next -> next; // Create Link
+            delete temp;
+            break;
+        }
+        prev = temp;    //Remember
+        temp = temp -> next; // Then move further
+    }
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {22,3,4,5};
@@ -122,8 +154,12 @@ int main()
     // PrintLL(head);
 
     //For Deletion of Tail
+
+    // head = DeleteTail(head);
+    // cout<<"Tail Deleted: ";
+    // PrintLL(head);
     
-    head = DeleteTail(head);
-    cout<<"Tail Deleted: ";
+    head = DeleteAtK(head,3);
+    cout<<"Element deleted at particular kth posi: ";
     PrintLL(head);
 }
