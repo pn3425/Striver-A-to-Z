@@ -220,6 +220,39 @@ Node* InsertAtK(Node* head, int val, int k){
     return head;
 }
 
+
+
+//Insert Before a Value  (Insert 100 before 4, So 100 is ele and 4 is value)
+
+Node* InsertBeforeValue(Node* head, int ele, int val){
+
+    // Case 1 :  // If no element there
+    if(head == NULL){
+        return NULL;
+    }
+
+    // Case 2 : If k=1 (Adding at first)
+    if(head -> data == val){
+        Node* temp = new Node(ele,head);
+        return temp; 
+    }
+
+    // Case 3 : If k>=2 
+    int count = 0;
+    Node* tempx = head;
+    
+    while(tempx -> next != NULL){
+        if(tempx -> next -> data == val){
+            Node* x = new Node(ele);
+            x -> next = tempx -> next;
+            tempx -> next = x;
+            break;
+        }
+        tempx = tempx -> next;
+    }
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {22,3,4,5};
@@ -269,8 +302,12 @@ int main()
     // PrintLL(head);
 
     //Insert at kth Posi
-    head = InsertAtK(head,9090,3);
-    cout<<"Inserting at Kth Posi: ";
-    PrintLL(head);
+    // head = InsertAtK(head,9090,3);
+    // cout<<"Inserting at Kth Posi: ";
+    // PrintLL(head);
 
+    //Insert a element before value
+    head = InsertBeforeValue(head,5000,22);
+    cout<<"Insert a element before value: ";
+    PrintLL(head);
 }
