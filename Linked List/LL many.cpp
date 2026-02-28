@@ -162,10 +162,25 @@ Node* DeleteAtElement(Node* head, int element){
 
 //Insertion at Beginning
 
-Node* InsertHead(Node* head, int val){
+Node* InsertAtHead(Node* head, int val){
     Node* temp = new Node(val);
     temp -> next = head;    // OR  Node* temp = new Node(val,head);
     return temp;
+}
+
+//Insertion at Tail
+
+Node* InsertAtTail(Node* head, int val){
+    if(head == NULL){
+        return new Node(val);
+    }
+    Node* temp = head;
+    while(temp -> next != NULL){
+        temp = temp -> next; //Reached last element
+    }
+    Node* newnode = new Node(val);
+    temp -> next = newnode;
+    return head;
 }
 
 int main()
@@ -187,31 +202,33 @@ int main()
     cout<<"SearchElement Present or not: "<<SearchElement(head,5)<<"\n";
 
     //For Deletion/Removal of Head (Uncomment the below three lines)
-
     // head = DeleteHead(head);
     // cout<<"New head";
     // PrintLL(head);
 
     //For Deletion of Tail
-
     // head = DeleteTail(head);
     // cout<<"Tail Deleted: ";
     // PrintLL(head);
     
     //Deletion at Kth position
-
     // head = DeleteAtK(head,3);
     // cout<<"Element deleted at particular kth posi: ";
     // PrintLL(head);
 
     //Deletion of element (When element itself is passed)
-
     // head = DeleteAtElement(head,5);
     // cout<<"Remaining Elements after deletion : ";
     // PrintLL(head);
 
     //Insert at Beginning
-    head = InsertHead(head,100);
-    cout<<"Inserting Element at Beginning: ";
+    // head = InsertAtHead(head,100);
+    // cout<<"Inserting Element at Beginning: ";
+    // PrintLL(head);
+
+    //Insert at Tail
+    head = InsertAtTail(head,100);
+    cout<<"Inserting Element at tail: ";
     PrintLL(head);
+
 }
