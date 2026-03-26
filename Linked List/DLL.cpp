@@ -56,6 +56,26 @@ Node* DeleteHeadOfDLL(Node* head){
     return head;  
 }
 
+//Delete Tail
+
+Node* DeleteTailofDLL(Node* head){
+     //Case 1: If list is empty || If list has 1 element
+    if(head == NULL || head->next == NULL) return NULL;
+
+    //Case 2: If DLL has element
+    Node* tail = head;
+    while( tail -> next != NULL)
+    {
+        tail = tail -> next;
+    }
+        Node* NewTail = tail -> back;
+        NewTail -> next = nullptr;
+        tail -> back = nullptr;
+        delete tail;   
+        return head;
+    
+}
+
 void PrintDLL(Node* head){
     Node* temp = head;
     while(temp != NULL){
@@ -66,7 +86,7 @@ void PrintDLL(Node* head){
 }
 
 int main(){
-vector<int> arr = {2,4,6,8};
+vector<int> arr = {2,4,6,8}; 
 Node* head = ConvertArray2DLL(arr);
 
 // Printing array to DLL
@@ -75,8 +95,13 @@ PrintDLL(head);
 cout<<"\n";
 
 // Deleting at Head
-head = DeleteHeadOfDLL(head);
-cout<<"After Deletion of head : ";
-PrintDLL(head);
+// head = DeleteHeadOfDLL(head);
+// cout<<"After Deletion of head : ";
+// PrintDLL(head);
+// cout<<"\n";
 
+//Deleting at Tail
+head = DeleteTailofDLL(head);
+cout<<"After Deletion of Tail : ";
+PrintDLL(head);
 }
