@@ -41,6 +41,21 @@ Node* ConvertArray2DLL(vector<int>&array)
 
 }
 
+//Delete Head
+
+Node* DeleteHeadOfDLL(Node* head){
+    //Case 1: If list is empty || If list has 1 element
+    if(head == NULL || head->next == NULL) return NULL;
+
+    //Case 2: If DLL has element
+        Node* prev = head;
+        head = head -> next;
+        head -> back = nullptr;
+        prev -> next = nullptr;
+        delete(prev);
+    return head;  
+}
+
 void PrintDLL(Node* head){
     Node* temp = head;
     while(temp != NULL){
@@ -55,8 +70,13 @@ vector<int> arr = {2,4,6,8};
 Node* head = ConvertArray2DLL(arr);
 
 // Printing array to DLL
+cout<<"Array to DLL : ";
+PrintDLL(head);
+cout<<"\n";
 
-cout<<" Array to DLL : ";
+// Deleting at Head
+head = DeleteHeadOfDLL(head);
+cout<<"After Deletion of head : ";
 PrintDLL(head);
 
 }
