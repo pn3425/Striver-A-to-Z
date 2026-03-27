@@ -76,6 +76,51 @@ Node* DeleteTailofDLL(Node* head){
     
 }
 
+// Deleting Kth Element from DLL
+
+Node* DeleteKthEle(Node* head, int k){
+    if(head == NULL) return NULL;
+    
+    //Going till the Kth Element (standing on Kth Element)
+    int cnt = 0;
+    Node* temp = head;
+    while(temp != NULL){
+        cnt++;
+        if(cnt == k) break;
+        temp = temp -> next;
+    }
+    Node* prev = temp -> back;
+    Node* front = temp -> next;
+
+    //Handle Edge Cases considering the front and previous and u are at between them at temp
+
+    // Case 1: When front and prev both are NULL
+    if(front == NULL && prev == NULL){
+        return NULL;
+    }
+
+    // Case 2: Where front is NULL (That means you are at tail so delete the tail)
+    else if(front == NULL){
+        return DeleteTailofDLL(head);
+
+    }
+
+    // Case 3: Where prev if NULL (That means you are at the head so delete the head)
+    else if(prev == NULL){
+        return DeleteHeadOfDLL(head);
+    }
+
+    // Now Case 4: When Kth element is in between
+    prev -> next = front;
+    front -> back = prev;
+    temp -> next = nullptr;
+    temp -> back = nullptr;
+    delete temp;
+    return head;
+}
+
+//Printing the DLL
+
 void PrintDLL(Node* head){
     Node* temp = head;
     while(temp != NULL){
@@ -101,7 +146,13 @@ cout<<"\n";
 // cout<<"\n";
 
 //Deleting at Tail
-head = DeleteTailofDLL(head);
-cout<<"After Deletion of Tail : ";
+// head = DeleteTailofDLL(head);
+// cout<<"After Deletion of Tail : ";
+// PrintDLL(head);
+
+//Deleting at Kth Element
+head = DeleteKthEle(head,3);
+cout<<"After Deletion at Kth place : ";
 PrintDLL(head);
+
 }
