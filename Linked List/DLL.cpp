@@ -174,6 +174,36 @@ Node* InsertBeforeTail(Node* head, int val){
     return head;
 }
 
+//Insertion before kth position
+
+Node* InsertBeforeKthPosi(Node* head, int val, int k)
+{
+    if(head -> next == NULL){
+        return InsertBeforeHead(head,val); // DLL only contains one element
+    }
+
+    if(k == 1){
+       return InsertBeforeHead(head,val);
+    }
+
+    if(k == 4){
+        return InsertBeforeTail(head,val);
+    }
+
+    Node* temp = head;
+    int cnt = 0;
+    while(temp != NULL){
+        cnt++;
+        if(cnt == k) break;
+        temp = temp -> next;
+    }
+    Node* prev = temp -> back;
+    Node* newNode = new Node(val,temp,prev);
+    temp -> back = newNode;
+    prev -> next = newNode;
+    return head;
+}
+
 
 //Printing the DLL
 
@@ -222,7 +252,12 @@ cout<<"\n";
 // PrintDLL(head);
 
 //Insert a Node before Tail
-head = InsertBeforeTail(head,500);
-cout<<"DLL after inserting a node before tail : ";
+// head = InsertBeforeTail(head,500);
+// cout<<"DLL after inserting a node before tail : ";
+// PrintDLL(head);
+
+//Insert a Node Before Kth Posi
+head = InsertBeforeKthPosi(head,600,1);
+cout<<"DLL after inserting a node before Kth Posi: ";
 PrintDLL(head);
 }
