@@ -141,6 +141,38 @@ void DeleteNodeDLL(Node* temp){
     free (temp);
 }
 
+//Insertion of Node before Head
+
+Node* InsertBeforeHead(Node* head, int val){
+
+    Node* NewHead = new Node(val, head, nullptr);
+    head -> back = nullptr;
+    return NewHead;
+}
+
+//Insertion of Node before Tail
+
+Node* InsertBeforeTail(Node* head, int val){
+
+    if(head -> next == NULL){
+        return InsertBeforeHead(head,val); // DLL only contains one element
+    }
+
+    Node* temp = head;
+    while(temp->next != NULL){  // Move to the last node (tail)
+        temp = temp -> next;
+    }
+    Node* tail = temp;
+    Node* prev = tail -> back;
+
+    Node* NewNode = new Node(val,tail,prev);
+
+    if(prev != NULL){
+        prev -> next = NewNode;
+    }
+    tail -> back = NewNode;
+    return head;
+}
 
 
 //Printing the DLL
@@ -180,7 +212,17 @@ cout<<"\n";
 // PrintDLL(head);
 
 //Deleting the Node given
-DeleteNodeDLL(head->next->next);
-cout<<"After deletion of given Node: ";
+// DeleteNodeDLL(head->next->next);
+// cout<<"After deletion of given Node: ";
+// PrintDLL(head);
+
+//Insert a Node before Head
+// head = InsertBeforeHead(head,400);
+// cout<<"DLL after inserting a node before head : ";
+// PrintDLL(head);
+
+//Insert a Node before Tail
+head = InsertBeforeTail(head,500);
+cout<<"DLL after inserting a node before tail : ";
 PrintDLL(head);
 }
