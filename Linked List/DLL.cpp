@@ -119,6 +119,30 @@ Node* DeleteKthEle(Node* head, int k){
     return head;
 }
 
+//Deleting a given Node in DLL
+
+void DeleteNodeDLL(Node* temp){
+    
+    Node* front = temp -> next;
+    Node* prev = temp -> back;
+
+ 
+    if(front == NULL){   //That means the temp/you are standing on the last element
+        prev -> next = nullptr;
+        temp -> back = nullptr;
+        free (temp);
+        return;
+    }
+
+    // If the Node that needs to be deleted is in between front and prev
+    prev -> next = front;
+    front -> back = prev;
+    temp -> next = temp -> back = nullptr;
+    free (temp);
+}
+
+
+
 //Printing the DLL
 
 void PrintDLL(Node* head){
@@ -151,8 +175,12 @@ cout<<"\n";
 // PrintDLL(head);
 
 //Deleting at Kth Element
-head = DeleteKthEle(head,3);
-cout<<"After Deletion at Kth place : ";
-PrintDLL(head);
+// head = DeleteKthEle(head,3);
+// cout<<"After Deletion at Kth place : ";
+// PrintDLL(head);
 
+//Deleting the Node given
+DeleteNodeDLL(head->next->next);
+cout<<"After deletion of given Node: ";
+PrintDLL(head);
 }
